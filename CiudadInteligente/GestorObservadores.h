@@ -11,6 +11,8 @@ private:
 public:
     void registrar(IObservadorReporte* obs);
     void notificar(const shared_ptr<Reporte>& r);
+    void eliminar(IObservadorReporte* obs);
+    int getObservadores() const;
 };
 
 

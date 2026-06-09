@@ -2,38 +2,51 @@
 
 int Reporte::contadorReportes = 0;
 
-Reporte::Reporte(const string& mod, const map <string, string>& dato) :
-    idReporte(++contadorReportes), modulo(mod), contenidoFormnateado(nullptr) {
 
-    ostringstream ss;
+// Constructor con 2 parámetros (sin estado)
+Reporte::Reporte(const string& mod, const map<string, string>& datos)
+    : idReporte(++contadorReportes), modulo(mod) {
 
-    ss << "\t ==============================================\n"
-        << "\t Reporte ID: " << idReporte << " Modulo: " << modulo <<
-        "\t ==============================================n";
+    contenido = "\n=== REPORTE ID: " + to_string(idReporte) + " | MODULO: " + modulo + " ===\n";
 
-    for (const auto& par : dato) {
-        ss << "\t " << par.first << ": " << par.second << "\n";
+    for (const auto& par : datos) {
+        contenido += par.first + ": " + par.second + "\n";
     }
-    ss << "\t ==============================================\n";
-    string temp = ss.str();
-    contenidoFormnateado = new char[temp.size() + 1];
-    strcpy(contenidoFormnateado, temp.c_str());
+
+    contenido += "=========================================\n";
+}
+
+// Constructor con 3 parámetros (con estado)
+Reporte::Reporte(const string& mod, const map<string, string>& datos, const string& estado)
+    : idReporte(++contadorReportes), modulo(mod) {
+
+    contenido = "\n=== REPORTE ID: " + to_string(idReporte) + " | MODULO: " + modulo + " ===\n";
+
+    for (const auto& par : datos) {
+        contenido += par.first + ": " + par.second + "\n";
+    }
+
+    if (!estado.empty()) {
+        contenido += "\nESTADO: " + estado + "\n";
+    }
+
+    contenido += "=========================================\n";
 }
 
 ///Regla de 3
 Reporte :: ~Reporte() {
-    delete[] contenidoFormnateado;
+    delete[] contenidoForma;
 }
 
 Reporte::Reporte(const Reporte& other) :
-    idReporte(other.idReporte), modulo(other.modulo), contenidoFormnateado(nullptr) {
-    if (other.contenidoFormnateado) {
-        contenidoFormnateado = new char[strlen(other.contenidoFormnateado) + 1];
-        strcpy(contenidoFormnateado, other.contenidoFormnateado);
+    idReporte(other.idReporte), modulo(other.modulo), contenidoForma(nullptr) {
+    if (other.contenidoForma) {
+        contenidoForma = new char[strlen(other.contenidoForma) + 1];
+        strcpy(contenidoForma, other.contenidoForma);
     }
     else
     {
-        contenidoFormnateado = nullptr;
+        contenidoForma = nullptr;
     }
 }
 
@@ -41,14 +54,14 @@ Reporte& Reporte::operator=(const Reporte& other) {
     if (this != &other) {
         idReporte = other.idReporte;
         modulo = other.modulo;
-        delete[] contenidoFormnateado;
-        if (other.contenidoFormnateado) {
-            contenidoFormnateado = new char[strlen(other.contenidoFormnateado) + 1];
-            strcpy(contenidoFormnateado, other.contenidoFormnateado);
+        delete[] contenidoForma;
+        if (other.contenidoForma) {
+            contenidoForma = new char[strlen(other.contenidoForma) + 1];
+            strcpy(contenidoForma, other.contenidoForma);
         }
         else
         {
-            contenidoFormnateado = nullptr;
+            contenidoForma = nullptr;
         }
     }
     return *this;
@@ -63,12 +76,12 @@ string Reporte::getModulo() const {
 }
 
 const char* Reporte::getContenido() const {
-    return contenidoFormnateado;
+    return contenidoForma;
 }
 
 ostream& operator<<(ostream& os, const Reporte& reporte) {
-    if (reporte.contenidoFormnateado) {
-        os << reporte.contenidoFormnateado;
+    if (reporte.contenidoForma) {
+        os << reporte.contenidoForma;
     }
     return os;
 }

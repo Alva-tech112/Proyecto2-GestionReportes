@@ -142,6 +142,8 @@
     <ClCompile Include="GestorObservadores.cpp" />
     <ClCompile Include="GestorReportes_Single.cpp" />
     <ClCompile Include="HistorialReportes.cpp" />
+    <ClCompile Include="observadorConsola.cpp" />
+    <ClCompile Include="observadorPersistencia.cpp" />
     <ClCompile Include="PlantaSolar.cpp" />
     <ClCompile Include="Reporte.cpp" />
     <ClCompile Include="SimuladorCarreterasInteligentes.cpp" />
@@ -154,6 +156,7 @@
     <ClInclude Include="AdaptadorSensorTrafico.h" />
     <ClInclude Include="AdaptadorTrafico.h" />
     <ClInclude Include="AnalizadorGenerico.h" />
+    <ClInclude Include="ArchivoNoEncontradoException.h" />
     <ClInclude Include="CentralEmergencias.h" />
     <ClInclude Include="CentroControlVial.h" />
     <ClInclude Include="CiudadException.h" />
@@ -168,6 +171,7 @@
     <ClInclude Include="EstacionCargaElectrica.h" />
     <ClInclude Include="EstrategiaAhorro.h" />
     <ClInclude Include="FabricaCarretera.h" />
+    <ClInclude Include="FuenteInvalidaDatosException.h" />
     <ClInclude Include="GestorArchivos.h" />
     <ClInclude Include="GestorCiudad.h" />
     <ClInclude Include="GestorObservadores.h" />
@@ -181,6 +185,9 @@
     <ClInclude Include="IProductor.h" />
     <ClInclude Include="IteradorDistrito.h" />
     <ClInclude Include="MedicionTrafico.h" />
+    <ClInclude Include="ModuloNoEncontradoException.h" />
+    <ClInclude Include="observadorConsola.h" />
+    <ClInclude Include="observadorPersistencia.h" />
     <ClInclude Include="PlantaSolar.h" />
     <ClInclude Include="Reporte.h" />
     <ClInclude Include="SensorTraficoExterno.h" />

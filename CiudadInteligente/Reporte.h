@@ -22,11 +22,14 @@ private:
     static int contadorReportes;
     int idReporte;
     string modulo;
-    char* contenidoFormnateado;
+    char* contenidoForma;
+    string contenido; 
+
+    void ConstrutirContenido(const map<string, string>& datos, const string& estado = "");
 
 public:
+    Reporte(const string& mod, const map<string, string>& datos, const string& estado);
     Reporte(const string& mod, const map<string, string>& datos);
-
     ///Big 3 RULE
     ~Reporte();
     Reporte(const Reporte& other);
@@ -35,6 +38,8 @@ public:
     int getIDReporte() const;
     string getModulo() const;
     const char* getContenido() const;
+
+    //metodo para obtener el contenido del reporte en formato string, para facilitar su uso en la clase HistorialReportes
     friend ostream& operator<<(ostream& os, const Reporte& reporte);
 
 };

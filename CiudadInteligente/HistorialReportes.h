@@ -12,14 +12,13 @@ class HistorialReportes{
 private:
     vector<Reporte*> historial;
 
-
 public:
     HistorialReportes() = default;
 
     //big 5
     ~HistorialReportes();
     //constructor de copia
-    HistorialReportes(const HistorialReportes& otro;
+    HistorialReportes(const HistorialReportes& otro);
     //constructor de movimiento
     HistorialReportes& operator=(const HistorialReportes& otro); 
     //operador de asignacion por movimiento
@@ -30,6 +29,9 @@ public:
     void agregarReporte(Reporte* r);
     void mostrar() const;
     void cargarDesdeArchivo(const string& ruta);
+
+    int getReportes() const; //metodo para obtener la cantidad de reportes almacenados en el historial
+    Reporte* getReporte(int indice) const; //metodo para obtener un reporte especifico del historial, dado su indice
 
 
 

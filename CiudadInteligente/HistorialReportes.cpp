@@ -1,4 +1,5 @@
 #include "HistorialReportes.h"
+#include "ArchivoNoEncontradoException.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -10,7 +11,6 @@
 HistorialReportes::~HistorialReportes() {
     for (Reporte* r : historial) delete r;
 }
-
 
 
 HistorialReportes::HistorialReportes(const HistorialReportes& otro) {
@@ -52,10 +52,22 @@ void HistorialReportes::cargarDesdeArchivo(const string& ruta) {
     ifstream archivo(ruta);
 
     if (!archivo.is_open()) {
-        cerr << "Error al abrir el archivo: " << ruta << endl;
-        return;
+        throw ArchivoNoEncontradoException(ruta);
     }
 
-    //agregar la programacion para el formato del archivo
+    cout << "Cargando reportes desde el archivo: " << ruta << endl;
+    archivo.close();
 }
 
+int HistorialReportes::getReportes() const {
+    return historial.size(); //cantidad de reportes almacenados en el historial
+}
+
+Reporte* HistorialReportes::getReporte(int indice) const {
+
+    if (indice < 0 || indice >= historial.size()) {
+        cerr << "Indice fuera de rango." << endl;
+        return;
+    }
+    return historial[indice]; //retornamos el reporte del historial segun su indice
+}

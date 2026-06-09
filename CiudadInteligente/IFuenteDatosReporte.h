@@ -22,7 +22,8 @@ public:
     // Método para obtener el nombre del modulo (ejemplo: "Energia", "Transporte", etc.)
     virtual string getNombreModulo() const = 0;
 
-    virtual map<string, string> DatosReporte() const = 0;
+    virtual map<string, string> DatosReporte() const = 0; //usaremos map para almacenar los datos del reporte, dado que queremos hacer un tipo de bitacora
+    //y map nos permite almacenar los datos del reporte de una manera mas organizada y estructurada
 
     virtual string getEstado() const = 0;
 
