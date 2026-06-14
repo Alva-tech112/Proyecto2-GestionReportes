@@ -1,7 +1,5 @@
 #include "AdaptadorAmbiental.h"
 
-AdaptadorAmbiental::~AdaptadorAmbiental() = default;
-
 string AdaptadorAmbiental::getNombreModulo() const {
     return "Ambiental";
 }

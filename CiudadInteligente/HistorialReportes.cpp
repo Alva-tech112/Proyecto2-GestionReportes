@@ -4,10 +4,6 @@
 #include <fstream>
 #include <sstream>
 
-
-
-
-
 HistorialReportes::~HistorialReportes() {
     for (Reporte* r : historial) delete r;
 }
@@ -19,10 +15,7 @@ HistorialReportes::HistorialReportes(const HistorialReportes& otro) {
     }
 }
 
-HistorialReportes::HistorialReportes(HistorialReportes&& otro) noexcept : historial(move(otro.historial)) {}
-
-
-HistorialReportes& HistorialReportes::operator=(const HistorialReportes& otro) noexcept {
+HistorialReportes& HistorialReportes::operator=(const HistorialReportes& otro){
 
     if (this == &otro) return *this;
     for (Reporte* r : historial) delete r; 
@@ -30,6 +23,12 @@ HistorialReportes& HistorialReportes::operator=(const HistorialReportes& otro) n
     return *this;
 }
 
+HistorialReportes& HistorialReportes::operator=(HistorialReportes&& otro) noexcept {
+    if (this == &otro) return *this;
+    for (Reporte* r : historial) delete r;
+    historial = move(otro.historial);
+    return *this;
+}
 
 void HistorialReportes::agregarReporte(Reporte* r) {
     historial.push_back(r);
@@ -67,7 +66,7 @@ Reporte* HistorialReportes::getReporte(int indice) const {
 
     if (indice < 0 || indice >= historial.size()) {
         cerr << "Indice fuera de rango." << endl;
-        return;
+        return nullptr;
     }
     return historial[indice]; //retornamos el reporte del historial segun su indice
 }

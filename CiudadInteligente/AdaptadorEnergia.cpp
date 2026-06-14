@@ -1,7 +1,5 @@
 #include "AdaptadorEnergia.h"
 
-AdaptadorEnergia::~AdaptadorEnergia() = default;
-
 string AdaptadorEnergia::getNombreModulo() const {
     return "Energia";
 }

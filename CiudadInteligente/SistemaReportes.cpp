@@ -119,16 +119,21 @@ void SistemaReportes::generarReporteGeneral() {
         cout << "\nNo hay fuente de datos\n";
         return;
     }
-    map<string, map<string, string>> datosGenerales;
+
+    map<string, string> datosGenerales;
+
     for (auto* f : fuentes) {
-        datosGenerales[f->getNombreModulo()] = f->DatosReporte();
+        // Aplanamos los datos de cada fuente agregando el nombre del módulo como prefijo
+        map<string, string> datosFuente = f->DatosReporte();
+        for (const auto& par : datosFuente) {
+            datosGenerales[f->getNombreModulo() + " - " + par.first] = par.second;
+        }
     }
-    Reporte* r = new Reporte("Reporte General", datosGenerales); //revisar porque da este error
+
+    Reporte* r = new Reporte("Reporte General", datosGenerales);
     historial.agregarReporte(r);
     gestorObs.notificar(make_shared<Reporte>(*r));
     cout << "\nReporte general generado\n";
-
-
 }
 
 void SistemaReportes::mostrarHistorial() const {

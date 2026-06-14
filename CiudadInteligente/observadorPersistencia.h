@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "Reporte.h"
 #include "IObservadorReporte.h"
 #include <fstream>
 #include <sstream>

@@ -16,7 +16,7 @@ void observadorPersistencia::actualizar(const shared_ptr<Reporte>& reporte) {
 
     }
     // Escribir el reporte en el archivo
-    archivo << *reporte; //revisar error mas adelante
+    archivo << *reporte;
     archivo.close();
     cout <<"\nReporte guardado en " << ruta << endl;
 }

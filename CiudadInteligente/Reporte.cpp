@@ -39,10 +39,10 @@ Reporte :: ~Reporte() {
 }
 
 Reporte::Reporte(const Reporte& other) :
-    idReporte(other.idReporte), modulo(other.modulo), contenidoForma(nullptr) {
+    idReporte(other.idReporte), modulo(other.modulo), contenidoForma(nullptr), contenido(other.contenido) {
     if (other.contenidoForma) {
         contenidoForma = new char[strlen(other.contenidoForma) + 1];
-        strcpy(contenidoForma, other.contenidoForma);
+        strcpy_s(contenidoForma, strlen(other.contenidoForma) + 1, other.contenidoForma);
     }
     else
     {
@@ -54,10 +54,11 @@ Reporte& Reporte::operator=(const Reporte& other) {
     if (this != &other) {
         idReporte = other.idReporte;
         modulo = other.modulo;
+        contenido = other.contenido; 
         delete[] contenidoForma;
         if (other.contenidoForma) {
             contenidoForma = new char[strlen(other.contenidoForma) + 1];
-            strcpy(contenidoForma, other.contenidoForma);
+            strcpy_s(contenidoForma, strlen(other.contenidoForma) + 1, other.contenidoForma);
         }
         else
         {
@@ -80,8 +81,7 @@ const char* Reporte::getContenido() const {
 }
 
 ostream& operator<<(ostream& os, const Reporte& reporte) {
-    if (reporte.contenidoForma) {
-        os << reporte.contenidoForma;
-    }
+
+    os << reporte.contenido;
     return os;
 }
